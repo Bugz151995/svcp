@@ -11,17 +11,17 @@
 <body>
   <div class="row m-0">
     <div class="col-lg-6 d-none d-lg-block fixed-height-100 p-0">
-      <img src="<?= site_url()?>dist/images/school_bg.jpg" class="sign-in-bg" alt="">
+      <img src="<?= site_url()?>dist/images/school_bg.jpg" loading="lazy" class="sign-in-bg" alt="">
     </div>
     <div class="col-lg-6 fixed-height-100 d-flex align-items-center"> 
       <div class="d-flex flex-column w-100 px-2">   
-        <div class="card-img-top d-flex justify-content-center justify-content-lg-start">
-          <img src="<?= site_url()?>dist/images/school_logo.png" alt="" class="w-25 p-2">
+        <div class="card-img-top d-flex justify-content-center">
+          <img src="<?= site_url()?>dist/images/school_logo.png" alt="" loading="lazy" class="w-25 p-2">
         </div>
-        <div class="h3 display-6 text-center text-lg-start">
+        <div class="h3 display-6 text-center">
           <span class="text-success">Register</span> Now,
         </div>
-        <span class="lead text-success">Creating your account only takes a few steps.</span>
+        <span class="lead text-success text-center">Creating your account only takes a few steps.</span>
                 
         <div class="card-body px-0 mt-4">
           <?= form_open('signup/submit');?>
@@ -43,7 +43,7 @@
               </div>
 
               <div class="form-group col-sm-6">
-                <label for="mname" class="form-label"><span class="text-danger">&nbsp;</span> Middlename</label>
+                <label for="mname" class="form-label"><span class="text-danger">&nbsp;</span> Middlename <span class="fst-italic small text-muted">[Optional]</span></label>
                 <input type="text" name="mname" id="mname" value="<?= set_value('mname')?>" placeholder="Middlename here..." class="form-control form-control-sm">
                 <?php if(isset($validation)): ?>
                   <?= $validation->showError('mname', 'my_single') ?>
@@ -59,7 +59,7 @@
               </div>
 
               <div class="form-group col-sm-6">
-                <label for="suffix" class="form-label"><span class="text-danger">&nbsp;</span> Suffix</label>
+                <label for="suffix" class="form-label"><span class="text-danger">&nbsp;</span> Suffix <span class="fst-italic small text-muted">[Optional]</span></label>
                 <input type="text" name="suffix" id="suffix" value="<?= set_value('suffix')?>" placeholder="Suffix here..." class="form-control form-control-sm">
                 <?php if(isset($validation)): ?>
                   <?= $validation->showError('suffix', 'my_single') ?>
@@ -103,7 +103,7 @@
               </div>
 
               <div class="form-group col-sm-6">
-                <label for="email" class="form-label"><span class="text-danger">*</span> E-mail address</label>
+                <label for="email" class="form-label"><span class="text-danger">&nbsp;</span> E-mail address <span class="fst-italic small text-muted">[Optional]</span></label>
                 <input type="email" name="email" id="email" value="<?= set_value('email')?>" placeholder="Email address here..." class="form-control form-control-sm">
                 <?php if(isset($validation)): ?>
                   <?= $validation->showError('email', 'my_single') ?>
@@ -112,7 +112,7 @@
 
               <div class="form-group col-sm-6">
                 <label for="pass" class="form-label"><span class="text-danger">*</span> Password</label>
-                <input type="password" name="pass" id="pass" value="<?= set_value('pass')?>" placeholder="Password here..." class="form-control form-control-sm border-0 border-top border-start border-bottom">
+                <input type="password" name="pass" id="pass" value="<?= set_value('pass')?>" placeholder="Password here..." class="form-control form-control-sm">
                 <?php if(isset($validation)): ?>
                   <?= $validation->showError('pass', 'my_single') ?>
                 <?php endif ?>
@@ -120,7 +120,7 @@
 
               <div class="form-group col-sm-6">
                 <label for="passconf" class="form-label"><span class="text-danger">*</span> Repeat Password</label>
-                <input type="password" name="passconf" id="passconf" value="<?= set_value('passconf')?>" placeholder="Confirm Password here..." class="form-control form-control-sm border-0 border-top border-start border-bottom">
+                <input type="password" name="passconf" id="passconf" value="<?= set_value('passconf')?>" placeholder="Confirm Password here..." class="form-control form-control-sm">
                 <?php if(isset($validation)): ?>
                   <?= $validation->showError('passconf', 'my_single') ?>
                 <?php endif ?>

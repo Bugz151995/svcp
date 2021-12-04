@@ -15,13 +15,13 @@
     </div>
     <div class="col-lg-6 fixed-height-100 d-flex align-items-center"> 
       <div class="d-flex flex-column w-100 px-2">   
-        <div class="card-img-top d-flex justify-content-center justify-content-lg-start">
+        <div class="card-img-top d-flex justify-content-center">
           <img src="<?= site_url()?>dist/images/school_logo.png" alt="" class="w-25 p-2">
         </div>
-        <div class="h3 display-6 text-center text-lg-start">
+        <div class="h3 display-6 text-center">
           <span class="text-success">Welcome</span> Admin,
         </div>
-        <span class="lead text-success">please login to your account.</span>
+        <span class="lead text-success text-center">please login to your account.</span>
         <div class="card-body px-0 mt-4">
           <?= form_open('admin/signin');?>
             <?= csrf_field()?>

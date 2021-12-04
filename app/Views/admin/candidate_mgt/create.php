@@ -52,7 +52,16 @@
               <option value="<?= $p['position_id']?>" <?= set_select('post', $p['position']) ?>><?= $p['position']?></option>
             <?php endforeach ?>
           </select>
-        </div>
+        </div>    
+        <div class="mb-3">
+          <label for="sesh" class="form-label"><span class="text-danger">*</span> Voting Session</label>
+          <select name="sesh" id="sesh" class="form-select form-select-sm">
+            <option value="" selected disabled>Select a Voting Session</option>
+            <?php foreach($v_sesh as $key => $v): ?>
+              <option value="<?= $v['voting_session_id']?>" <?= set_select('sesh', $v['voting_session_id']) ?>><?= $v['scope']?></option>
+            <?php endforeach ?>
+          </select>
+        </div>        
       </div>
       <div class="modal-footer">
         <a href="<?= site_url()?>admin/candidate" role="button" class="btn btn-secondary">Close</a>

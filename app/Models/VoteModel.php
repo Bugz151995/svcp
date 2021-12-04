@@ -12,6 +12,7 @@ class VoteModel extends Model {
   protected $allowedFields = [
     'voted_at',
     'voter_id',
-    'candidate_id'
+    'candidate_id',
+    'voting_session_id'
   ];
 }

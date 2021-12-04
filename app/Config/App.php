@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://svc-portal.ph/';
+    public $baseURL = 'https://svc-portal.ph/';
 
     /**
      * --------------------------------------------------------------------------

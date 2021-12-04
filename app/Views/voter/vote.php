@@ -8,32 +8,65 @@
     </nav>
   </div>
 
-  <section class="py-5 my-5 d-flex flex-column align-items-center">
+  <section class="pb-5 my-5 d-flex flex-column align-items-center">
     <?php if(session()->getTempData('success')): ?>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
         <strong>Yey!</strong> <?= session()->getTempData('success') ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <?php endif ?>
     <?php if(session()->getTempData('error')): ?>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
         <strong>Oops!</strong> <?= session()->getTempData('error') ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" aria-label="Close"></button>
       </div>
     <?php endif ?>
-    <div id="qr-reader" style="width:500px"></div>
-    <div id="qr-reader-results"></div>
-    
-    <div class="alert alert-primary alert-dismissible fade show mt-4" role="alert">
-      <strong>Notice!</strong> Please Scan your QR Code here to start voting
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img src="<?= site_url()?>dist/images/5228739.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold lh-1 mb-3">Welcome Dear Voter.</h1>
+          <p class="lead">Voting requires each student to scan their QR code. In order to vote, click the "Scan QR Code" Button below. This will display the scanner from your screen. Once the popup modal is up just click "Start Scanning" and allow the browser to access your camera and point your camera to the QR Code. That's all there is to know. Good Day and Please vote wisely!</p>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Scan QR Code</button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="modal fade" id="exampleModal"  data-bs-backdrop="static"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Scan QR Code</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-0 ">
+            <div id="qr-reader" class="bg-light" style="width: 100%;" data-bs-dismiss=""></div>
+            <div id="qr-reader-results"></div>
+          </div>
+        </div>
+      </div>
+    </div>    
+    
   </section>
 </main>
 
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript">
 </script>
 <script>
+    // function setFullScreen(e)
+    // {
+    //   e.style.height = "100vh";
+    //   e.style.position = "fixed";
+    //   e.style.zIndex = '1050';
+    //   e.style.top = '0';
+    //   e.style.left = '0';
+    // }
+
     function docReady(fn) {
         // see if DOM is already available
         if (document.readyState === "complete"
@@ -59,7 +92,7 @@
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
-            "qr-reader", { fps: 10, qrbox: 250 });
+            "qr-reader", { fps: 10, qrbox: 250, aspectRatio: 1.333334 });
         html5QrcodeScanner.render(onScanSuccess);
     });
 </script>

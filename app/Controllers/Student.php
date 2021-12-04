@@ -21,7 +21,7 @@ class Student extends BaseController {
     helper('form');
     session()->destroy();
     echo view('templates/header');
-    echo view('');
+    echo view('signin');
     echo view('templates/footer');
   }
 

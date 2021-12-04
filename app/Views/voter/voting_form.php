@@ -9,7 +9,7 @@
     </nav>
   </div>
 
-  <section class="py-5 my-5">
+  <section class="pb-5 my-5">
     <?php if(session()->getTempData('success')): ?>
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Yey!</strong> <?= session()->getTempData('success') ?>
@@ -23,8 +23,31 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <?php endif ?>
+
+    <?= form_open('vote/form/select') ?>         
+      <div class="mb-3">
+        <label for="sesh" class="form-label"><span class="text-danger">*</span> Voting Session</label>
+        <div class="d-flex gap-3">
+          <select name="sesh" id="sesh" class="form-select form-select-sm">
+            <option value="" selected disabled>Select a Voting Session</option>
+            <?php foreach($v_sesh as $key => $v): ?>
+              <option value="<?= $v['voting_session_id']?>" <?= set_select('sesh', $v['voting_session_id']) ?>><?= $v['scope']?></option>
+            <?php endforeach ?>
+          </select>
+          <input type="submit" value="Select" class="btn btn-primary">
+        </div>
+      </div>    
+    <?= form_close() ?>
+    
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <strong>Welcome to the voting form!</strong> Please select a candidate in each position. Please Vote Wisely.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+      <hr>
     <?= form_open('vote/register_vote') ?>
     <?= csrf_field() ?>
+    <?= form_hidden('vs', esc($candidates[0]['voting_session_id'])) ?>
     <?= form_hidden('v', esc($student['voter_id'])) ?>
       <?php foreach($positions as $i => $post): ?>
       <table class="table table-bordered table-striped mb-5">
@@ -74,7 +97,9 @@
         </tbody>
       </table>
       <?php endforeach ?>
-      <button type="submit" class="btn btn-primary"><i class="fas fa-vote-yea fa-fw me-2"></i>Submit Vote</button>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-vote-yea fa-fw me-2"></i>Submit Vote</button>
+      </div>
     <?= form_close() ?>
   </section>
 </main> 

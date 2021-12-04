@@ -73,10 +73,9 @@ class Validation {
 			]
 		],
 		'email' => [
-			'rules'  => 'required|is_unique[students.email]|valid_email',
+			'rules'  => 'is_unique[students.email]|valid_email',
 			'errors' => [
-				'required'   => 'Please enter your email.',
-				'is_unique'  => 'The email has already been used.',
+				'is_unique'  => 'The email has already been taken.',
 				'valid_email' => 'Please enter a valid email.',
 			]
 		],
@@ -90,7 +89,7 @@ class Validation {
 			'rules' => 'required|matches[pass]',
 			'errors' => [
 				'required' => 'Please confirm your password.',
-				'matches' => 'The passwords don\'t match.'
+				'matches' => 'The Password does not match.'
 			]
 		]
 	];
