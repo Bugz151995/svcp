@@ -101,19 +101,29 @@ class Vote extends BaseController {
       helper('form');
       session();
       
-      echo view('templates/header');
-      echo view('templates/topnavbar', [
-          'student'    => $a_model->select('fname, mname, lname, suffix, gender, email, image, uname, grade, section, voters.voter_id')
-                                  ->join('students', 'students.student_id = accounts.student_id')
-                                  ->join('class', 'class.class_id = students.class_id')
-                                  ->join('voters', 'students.student_id = voters.student_id')
-                                  ->find(session()->get('student_id')),
-          'candidates' => $c_model->select('*')->getWhere(['voting_session_id' => $this->request->getPost('vs')])->getResultArray(),
-          'positions'  => $p_model->findAll(),
-          'v_sesh'     => $v_model->findAll()
-      ]);
-      echo view('voter/voting_form');
-      echo view('templates/footer');
+      if (!$this->validate([
+        'sesh' => [
+          'label' => 'Voting Session',
+          'rules' => 'required'
+        ]
+      ])) {
+        session()->setTempData('error', 'Please Select a voting session.', 2);
+        return redirect()->to('vote/form/'.session()->get('qr_code'));
+      } else {
+        echo view('templates/header');
+        echo view('templates/topnavbar', [
+            'student'    => $a_model->select('fname, mname, lname, suffix, gender, email, image, uname, grade, section, voters.voter_id')
+                                    ->join('students', 'students.student_id = accounts.student_id')
+                                    ->join('class', 'class.class_id = students.class_id')
+                                    ->join('voters', 'students.student_id = voters.student_id')
+                                    ->find(session()->get('student_id')),
+            'candidates' => $c_model->select('*')->getWhere(['voting_session_id' => $this->request->getPost('vs')])->getResultArray(),
+            'positions'  => $p_model->findAll(),
+            'v_sesh'     => $v_model->findAll()
+        ]);
+        echo view('voter/voting_form');
+        echo view('templates/footer');
+      }
     } else {
       session()->setTempData('error', 'Sorry your QR Code is not Valid! Please download the correct QR Code in My Account page.', 2);
       return redirect()->to('vote');
@@ -149,7 +159,7 @@ class Vote extends BaseController {
             $valid_vote_count++;
           } 
           
-          if($valid_vote_count === 0 && $vote_valid['count'] === 0) {
+          if($valid_vote_count === 0) {
             $v_model->save($vote_data);
           }
         }

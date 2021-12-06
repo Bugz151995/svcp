@@ -36,7 +36,7 @@
             <div class="row g-3 g-lg-4 mb-3">
               <div class="form-group col-sm-6">
                 <label for="fname" class="form-label"><span class="text-danger">*</span> Firstname</label>
-                <input type="text" name="fname" id="fname" value="<?= set_value('fname')?>" placeholder="Firstname here..." class="form-control form-control-sm">
+                <input type="text" name="fname" id="fname" value="<?= set_value('fname')?>" placeholder="Firstname here..." class="text-capitalize form-control form-control-sm">
                 <?php if(isset($validation)): ?>
                   <?= $validation->showError('fname', 'my_single') ?>
                 <?php endif ?>
@@ -44,7 +44,7 @@
 
               <div class="form-group col-sm-6">
                 <label for="mname" class="form-label"><span class="text-danger">&nbsp;</span> Middlename <span class="fst-italic small text-muted">[Optional]</span></label>
-                <input type="text" name="mname" id="mname" value="<?= set_value('mname')?>" placeholder="Middlename here..." class="form-control form-control-sm">
+                <input type="text" name="mname" id="mname" value="<?= set_value('mname')?>" placeholder="Middlename here..." class="text-capitalize form-control form-control-sm">
                 <?php if(isset($validation)): ?>
                   <?= $validation->showError('mname', 'my_single') ?>
                 <?php endif ?>
@@ -52,7 +52,7 @@
 
               <div class="form-group col-sm-6">
                 <label for="lname" class="form-label"><span class="text-danger">*</span> Lastname</label>
-                <input type="text" name="lname" id="lname" value="<?= set_value('lname')?>" placeholder="Lastname here..." class="form-control form-control-sm">
+                <input type="text" name="lname" id="lname" value="<?= set_value('lname')?>" placeholder="Lastname here..." class="text-capitalize form-control form-control-sm">
                 <?php if(isset($validation)): ?>
                   <?= $validation->showError('lname', 'my_single') ?>
                 <?php endif ?>
@@ -60,7 +60,7 @@
 
               <div class="form-group col-sm-6">
                 <label for="suffix" class="form-label"><span class="text-danger">&nbsp;</span> Suffix <span class="fst-italic small text-muted">[Optional]</span></label>
-                <input type="text" name="suffix" id="suffix" value="<?= set_value('suffix')?>" placeholder="Suffix here..." class="form-control form-control-sm">
+                <input type="text" name="suffix" id="suffix" value="<?= set_value('suffix')?>" placeholder="Suffix here..." class="text-capitalize form-control form-control-sm">
                 <?php if(isset($validation)): ?>
                   <?= $validation->showError('suffix', 'my_single') ?>
                 <?php endif ?>

@@ -28,7 +28,7 @@
         <div class="card p-3">
           <img src="<?= $student['image']?>" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title text-center">
+            <h5 class="card-title text-center text-capitalize">
               <i class="fas fa-user-circle fa-fw me-2"></i>
               <?= $student['fname'].' ' ?>
               <?php if($student['mname']): ?>
@@ -53,7 +53,7 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item list-group-item-action">
               <a href="<?= site_url()?>account/disp_name" class="d-flex justify-content-between">
-                <span>
+                <span class="text-capitalize">
                   <i class="fas fa-signature fa-fw me-2"></i>
                   <?= $student['fname'].' ' ?>
                   <?php if($student['mname']): ?>

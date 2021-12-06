@@ -52,7 +52,7 @@
             <tr>
               <td>
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-6 text-capitalize">
                     <?= $c['fname'].' ' ?>
                     <?php if($c['mname']): ?>
                       <?= substr($c['mname'],0,1).'. ' ?>

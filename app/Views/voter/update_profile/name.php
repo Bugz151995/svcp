@@ -15,7 +15,7 @@
         <div class="row g-3">
           <div class="form-group col-sm-6">
             <label for="fname" class="form-label"><span class="text-danger">*</span> Firstname</label>
-            <input type="text" name="fname" id="fname" value="<?= set_value('fname', $student['fname'])?>" placeholder="Firstname here..." class="form-control form-control-sm">
+            <input type="text" name="fname" id="fname" value="<?= set_value('fname', $student['fname'])?>" placeholder="Firstname here..." class="text-capitalize form-control form-control-sm">
             <?php if(isset($validation)): ?>
               <?= $validation->showError('fname', 'my_single') ?>
             <?php endif ?>
@@ -23,12 +23,12 @@
 
           <div class="form-group col-sm-6">
             <label for="mname" class="form-label"><span class="text-danger">&nbsp;</span> Middlename</label>
-            <input type="text" name="mname" id="mname" value="<?= set_value('mname', $student['mname'])?>" placeholder="Middlename here..." class="form-control form-control-sm">
+            <input type="text" name="mname" id="mname" value="<?= set_value('mname', $student['mname'])?>" placeholder="Middlename here..." class="text-capitalize form-control form-control-sm">
           </div>
 
           <div class="form-group col-sm-6">
             <label for="lname" class="form-label"><span class="text-danger">*</span> Lastname</label>
-            <input type="text" name="lname" id="lname" value="<?= set_value('lname', $student['lname'])?>" placeholder="Lastname here..." class="form-control form-control-sm">
+            <input type="text" name="lname" id="lname" value="<?= set_value('lname', $student['lname'])?>" placeholder="Lastname here..." class="text-capitalize form-control form-control-sm">
             <?php if(isset($validation)): ?>
               <?= $validation->showError('lname', 'my_single') ?>
             <?php endif ?>
@@ -36,7 +36,7 @@
 
           <div class="form-group col-sm-6">
             <label for="suffix" class="form-label"><span class="text-danger">&nbsp;</span> Suffix</label>
-            <input type="text" name="suffix" id="suffix" value="<?= set_value('suffix', $student['suffix'])?>" placeholder="Suffix here..." class="form-control form-control-sm">
+            <input type="text" name="suffix" id="suffix" value="<?= set_value('suffix', $student['suffix'])?>" placeholder="Suffix here..." class="text-capitalize form-control form-control-sm">
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
           </div>
           <div class="col-md-8 d-flex align-items-center">
             <div class="card-body">
-              <h5 class="card-title">
+              <h5 class="card-title text-capitalize">
                 <?= $voter[0]->fname.' '?>
                 <?php if($voter[0]->fname): ?>
                   <?= substr($voter[0]->mname, 0, 1).'. '?>
