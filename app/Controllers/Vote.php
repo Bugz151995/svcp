@@ -102,7 +102,7 @@ class Vote extends BaseController {
       session();
       
       if (!$this->validate([
-        'sesh' => [
+        'vs' => [
           'label' => 'Voting Session',
           'rules' => 'required'
         ]
@@ -143,7 +143,7 @@ class Vote extends BaseController {
 
       if(!$this->validate($rules)){
         session()->setTempData('error', 'Please vote one candidate in each Position/Category. Thank you!', 2);
-        return redirect()->to('vote/form/'.session()->get('qr_code'));
+        return redirect()->to('vote/form/select');
       } else {
         $valid_vote_count = 0;
         for ($i=0; $i < count($res); $i++) {
