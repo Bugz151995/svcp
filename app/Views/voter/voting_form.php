@@ -23,31 +23,39 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <?php endif ?>
-
-    <?= form_open('vote/form/select') ?>         
-      <div class="mb-3">
-        <label for="sesh" class="form-label"><span class="text-danger">*</span> Voting Session</label>
-        <div class="d-flex gap-3">
-          <select name="sesh" id="sesh" class="form-select form-select-sm">
-            <option value="" selected disabled>Select a Voting Session</option>
-            <?php foreach($v_sesh as $key => $v): ?>
-              <option value="<?= $v['voting_session_id']?>" <?= set_select('sesh', $v['voting_session_id']) ?>><?= $v['scope']?></option>
-            <?php endforeach ?>
-          </select>
-          <input type="submit" value="Select" class="btn btn-primary">
-        </div>
-      </div>    
-    <?= form_close() ?>
     
     <div class="alert alert-primary alert-dismissible fade show" role="alert">
       <strong>Welcome to the voting form!</strong> Please select a candidate in each position. Please Vote Wisely.
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
+    
+      <div class="d-none" id="endTime"><?= $limit[0]['time_limit']?></div>
+      <div class="d-none" id="route">vote</div>
+      <div class="d-flex gap-3 align-middle">
+        <div id="countdown" class="d-flex justify-content-end">
+          <ul class="nav nav-pills"> 
+            <li class="nav-item">
+              <a href="#" class="nav-link"><span class="fw-bold">Voting Expires In:</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"><span id="days"></span> days</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"><span id="hours"></span> Hours</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"><span id="minutes"></span> Minutes</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"><span id="seconds"></span> Seconds</a>
+            </li>
+          </ul>
+        </div>
+      </div>
       <hr>
     <?= form_open('vote/register_vote') ?>
     <?= csrf_field() ?>
-    <?= form_hidden('vs', esc($candidates[0]['voting_session_id'])) ?>
     <?= form_hidden('v', esc($student['voter_id'])) ?>
       <?php foreach($positions as $i => $post): ?>
       <table class="table table-bordered table-striped mb-5">
@@ -103,3 +111,4 @@
     <?= form_close() ?>
   </section>
 </main> 
+<script src="<?= site_url() ?>dist/js/countdown_timer.js"></script>

@@ -21,7 +21,8 @@ class Admin extends BaseController {
     echo view('admin/home', [
       'registered' => $a_model->selectCount('account_id', 'count')
                               ->findAll(),
-      'total_vote' => $v_model->selectCount('vote_id', 'count')
+      'total_vote' => $v_model->selectCount('vote_id', 'votes')
+                              ->groupBy('voter_id')
                               ->findAll(),
     ]);
     echo view('admin/templates/footer');

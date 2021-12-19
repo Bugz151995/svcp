@@ -10,8 +10,6 @@ class VotingSessionModel extends Model {
 
   protected $returnType = 'array';
   protected $allowedFields = [
-    'scope', 
-    'session_start', 
-    'session_end',
+    'time_limit'
   ];
 }

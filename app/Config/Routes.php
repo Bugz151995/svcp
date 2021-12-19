@@ -44,10 +44,10 @@ $routes->get('signout', 'Student::signout');
 $routes->get('home', 'Home::index', ['filter' => 'auth']);
 $routes->get('about', 'Home::about', ['filter' => 'auth']);
 $routes->get('poll', 'Poll::index', ['filter' => 'auth']);
+$routes->get('winners', 'Poll::showWinners', ['filter' => 'auth']);
 $routes->get('vote', 'Vote::index', ['filter' => 'auth']);
 $routes->post('vote/register_vote', 'Vote::registerVote', ['filter' => 'auth']);
 $routes->get('vote/form/(:any)', 'Vote::voteForm/$1', ['filter' => 'auth']);
-$routes->post('vote/form/select', 'Vote::selectVotingSession', ['filter' => 'auth']);
 $routes->get('vote/summary', 'Vote::voteSummary', ['filter' => 'auth']);
 
 $routes->group('account', ['filter' => 'auth'], function($routes){
@@ -86,6 +86,7 @@ $routes->group('admin', function($routes){
         $routes->post('save', 'Candidate::create');
         $routes->post('update', 'Candidate::update');
         $routes->post('delete', 'Candidate::delete');
+        $routes->post('time_limit', 'Candidate::setTimeLimit');
     });
     $routes->group('voting_session', ['filter' => 'adminauth'],function($routes){
         $routes->get('new', 'VotingSession::index');

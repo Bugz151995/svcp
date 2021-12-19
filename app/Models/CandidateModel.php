@@ -15,7 +15,6 @@ class CandidateModel extends Model {
     'lname',
     'suffix',
     'position_id',
-    'registered_at',
-    'voting_session_id'
+    'registered_at'
   ];
 }

@@ -36,7 +36,7 @@
               <i class="fas fa-vote-yea fa-5x"></i>
             </div>
             <div class="col-8 text-end">
-              <h1 class="display-1 fw-bold"><?= $total_vote[0]['count']?></h1>
+              <h1 class="display-1 fw-bold"><?= count($total_vote)?></h1>
             </div>
           </div>
         </div>

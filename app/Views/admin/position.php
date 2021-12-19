@@ -27,46 +27,48 @@
     </div>
   <?php endif ?>
 
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Position</th>
-        <th>Allowed Candidates</th>
-        <th>Date Added</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($positions as $key => $post) :?>
-      <tr>
-        <td><?= $key + 1 ?></td>
-        <td><?= $post['position'] ?></td>
-        <td><?= $post['allowed_candidate'] ?></td>
-        <td><?= date('M d, Y @ h:i:s a', strtotime($post['added_at'])) ?></td>
-        <td>
-          <div class="row justify-content-center g-3">
-            <div class="col-auto">
-              <?= form_open('admin/position/edit') ?>
-              <?= csrf_field() ?>
-              <?= form_hidden('p', $post['position_id']) ?>
-              <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-edit fa-fw"></i></button>
-              <?= form_close() ?>
+  <div class="table table-responsive shadow rounded rounded-3">
+    <table class="table table-bordered table-striped mb-0">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Position</th>
+          <th>Allowed Candidates</th>
+          <th>Date Added</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($positions as $key => $post) :?>
+        <tr>
+          <td><?= $key + 1 ?></td>
+          <td><?= $post['position'] ?></td>
+          <td><?= $post['allowed_candidate'] ?></td>
+          <td><?= date('M d, Y @ h:i:s a', strtotime($post['added_at'])) ?></td>
+          <td>
+            <div class="row justify-content-center g-3">
+              <div class="col-auto">
+                <?= form_open('admin/position/edit') ?>
+                <?= csrf_field() ?>
+                <?= form_hidden('p', $post['position_id']) ?>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-edit fa-fw"></i></button>
+                <?= form_close() ?>
+              </div>
+              <div class="col-auto">
+                <?= form_open('admin/position/confirm_delete') ?>
+                <?= csrf_field() ?>
+                <?= form_hidden('p', $post['position_id']) ?>
+                <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt fa-fw"></i></button>
+                <?= form_close() ?>
+              </div>
             </div>
-            <div class="col-auto">
-              <?= form_open('admin/position/confirm_delete') ?>
-              <?= csrf_field() ?>
-              <?= form_hidden('p', $post['position_id']) ?>
-              <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt fa-fw"></i></button>
-              <?= form_close() ?>
-            </div>
-          </div>
 
-          
-          
-        </td>
-      </tr>
-      <?php endforeach ?>
-    </tbody>
-  </table>
+            
+            
+          </td>
+        </tr>
+        <?php endforeach ?>
+      </tbody>
+    </table>
+  </div>
 </main>

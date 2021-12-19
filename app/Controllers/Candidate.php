@@ -10,14 +10,14 @@ class Candidate extends BaseController {
   public function index() {
     helper('form');
     $c_model = new CandidateModel();
+    $model = new VotingSessionModel();
     echo view('admin/templates/header');
     echo view('admin/templates/sidebar');
     echo view('admin/candidate', [
       'candidates' => $c_model->join('positions', 'positions.position_id = candidates.position_id')
-                              ->join('voting_session', 'voting_session.voting_session_id = candidates.voting_session_id')
-                              ->orderBy('voting_session.voting_session_id', 'DESC')
                               ->paginate(15),
-      'pager'      => $c_model->pager
+      'pager'      => $c_model->pager,
+      'limit'      => $model->findAll()
     ]);
     echo view('admin/templates/footer');
   }
@@ -26,18 +26,14 @@ class Candidate extends BaseController {
     helper('form');
     $c_model = new CandidateModel();
     $p_model = new PositionModel();
-    $v_model = new VotingSessionModel();
 
     echo view('admin/templates/header');
     echo view('admin/templates/sidebar');
     echo view('admin/candidate', [
       'candidates' => $c_model->join('positions', 'positions.position_id = candidates.position_id')
-                              ->join('voting_session', 'voting_session.voting_session_id = candidates.voting_session_id')
-                              ->orderBy('voting_session.voting_session_id', 'DESC')
                               ->paginate(15),
       'pager'      => $c_model->pager,
-      'positions'  => $p_model->findAll(),
-      'v_sesh'     => $v_model->findAll()
+      'positions'  => $p_model->findAll()
     ]);
     echo view('admin/candidate_mgt/create');
     echo view('admin/templates/footer');
@@ -48,19 +44,15 @@ class Candidate extends BaseController {
     helper('form');
     $c_model = new CandidateModel();
     $p_model = new PositionModel();
-    $v_model = new VotingSessionModel();
 
     echo view('admin/templates/header');
     echo view('admin/templates/sidebar');
     echo view('admin/candidate', [
       'candidates' => $c_model->join('positions', 'positions.position_id = candidates.position_id')
-                              ->join('voting_session', 'voting_session.voting_session_id = candidates.voting_session_id')
-                              ->orderBy('voting_session.voting_session_id', 'DESC')
                               ->paginate(15),
       'pager'      => $c_model->pager,
       'positions'  => $p_model->findAll(),
-      'candidate'  => $c_model->find(esc($this->request->getPost('c'))),
-      'v_sesh'     => $v_model->findAll()
+      'candidate'  => $c_model->find(esc($this->request->getPost('c')))
     ]);
     echo view('admin/candidate_mgt/edit');
     echo view('admin/templates/footer');
@@ -71,17 +63,13 @@ class Candidate extends BaseController {
     helper('form');
     $c_model = new CandidateModel();
     $p_model = new PositionModel();
-    $v_model = new VotingSessionModel();
     echo view('admin/templates/header');
     echo view('admin/templates/sidebar');
     echo view('admin/candidate', [
       'candidates' => $c_model->join('positions', 'positions.position_id = candidates.position_id')
-                              ->join('voting_session', 'voting_session.voting_session_id = candidates.voting_session_id')
-                              ->orderBy('voting_session.voting_session_id', 'DESC')
                               ->paginate(15),
       'pager'      => $c_model->pager,
       'candidate'  => $c_model->find(esc($this->request->getPost('c'))),
-      'v_sesh'     => $v_model->findAll()
     ]);
     echo view('admin/candidate_mgt/confirm_delete');
     echo view('admin/templates/footer');
@@ -112,8 +100,7 @@ class Candidate extends BaseController {
           'mname'        => esc($this->request->getPost('mname')),
           'lname'        => esc($this->request->getPost('lname')),
           'suffix'       => esc($this->request->getPost('suffix')),
-          'position_id'  => esc($this->request->getPost('post')),
-          'voting_session_id' => esc($this->request->getPost('sesh')),
+          'position_id'  => esc($this->request->getPost('post'))
         ]);
 
         session()->setTempData('success', 'The Candidate was successfully Updated!', 2);
@@ -165,7 +152,6 @@ class Candidate extends BaseController {
           'lname'       => esc($this->request->getPost('lname')),
           'suffix'      => esc($this->request->getPost('suffix')),
           'position_id' => esc($this->request->getPost('post')),
-          'voting_session_id' => esc($this->request->getPost('sesh')),
         ]);
 
         session()->setTempData('success', 'The Candidate was successfully addedd!', 2);
@@ -178,5 +164,31 @@ class Candidate extends BaseController {
       session()->setTempData('error', 'Please don\'t leave any fields with red asterisk(*) unanswered.', 2);
       return redirect()->to('admin/candidate');
     }
+  }
+  
+  /**
+   * update the time limit settings 
+   * update or insert only one row
+   *
+   * @return void
+   */
+  public function setTimeLimit()
+  {
+    $model = new VotingSessionModel();
+
+    $voting_session = $model->findAll();
+
+    $data = [
+      'time_limit' => $this->request->getPost('time_limit')
+    ];
+
+    if(count($voting_session) > 0){
+      $data['voting_session_id'] = $voting_session[0]['voting_session_id'];
+    }
+
+    $model->save($data);
+
+    session()->setTempdata('success', 'The time limit for this voting session has been successfully set!', 1);
+    return redirect()->to('admin/candidate');
   }
 }

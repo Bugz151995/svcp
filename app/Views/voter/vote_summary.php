@@ -78,7 +78,9 @@
         </table>
         <?php endforeach ?>
       </div>
-    </div> 
-      
+      <div class="card-footer">
+        <a href="<?= site_url() ?>vote" class="btn btn-primary"><i class="fas fa-check-circle"></i> Confirm</a>
+      </div>
+    </div>       
   </section>
 </main> 
